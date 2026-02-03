@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daniel Nwidebari</title>
+  <title>Daniel Nwidebari | Data Analyst</title>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,184 +12,414 @@
       font-family: 'Caveat', cursive;
       background-color: #1a1a1a;
       color: #ffffff;
+      line-height: 1.5;
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       padding: 40px 20px;
     }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.25em;
+      font-size: 3rem;
+      margin-bottom: 0.1em;
       color: #00ff88;
-      font-family: 'Caveat', cursive;
     }
-    .social {
+    .subtitle {
+      font-size: 1.6rem;
+      color: #ccc;
+      margin: 0.2rem 0 1.2rem 0;
+      font-weight: 400;
+      opacity: 0.92;
+      letter-spacing: 0.6px;
+    }
+    .header {
       display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .social a {
-      text-decoration: none;
-      color: #ffffff;
-      font-weight: bold;
-      border-bottom: 1px solid transparent;
-      transition: border-bottom 0.2s;
-      font-family: 'Caveat', cursive;
-      font-size: 1.2rem;
-    }
-    .social a:hover {
-      border-bottom: 1px solid #00ff88;
-    }
-    hr {
-      margin: 2rem 0;
-      border: 0;
-      border-top: 1px solid #ffffff;
-    }
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: #00ff88;
-      font-family: 'Caveat', cursive;
-    }
-    .portfolio-link {
-      text-decoration: none;
-      color: #ffffff;
-      font-weight: bold;
-      border-bottom: 1px solid transparent;
-      transition: border-bottom 0.2s;
-      font-family: 'Caveat', cursive;
-      font-size: 1.2rem;
-    }
-    .portfolio-link:hover {
-      border-bottom: 1px solid #00ff88;
-    }
-    .portfolio-item {
-      margin-bottom: 1.5rem;
-    }
-    .date {
-      font-size: 1rem;
-      color: #999999;
-      margin-top: 0.25rem;
-      font-family: 'Caveat', cursive;
-    }
-    .about {
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      font-family: 'Caveat', cursive;
-      font-size: 1.2rem;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
     }
     .contact-icons {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
     }
     .contact-icons a {
       color: #ffffff;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       transition: color 0.2s;
     }
     .contact-icons a:hover {
       color: #00ff88;
     }
+
+    /* Hamburger Menu */
+    .menu-container {
+      position: relative;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 32px;
+      height: 22px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 100%;
+      height: 4px;
+      background-color: #00ff88;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 9px);
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+    .menu-dropdown {
+      position: absolute;
+      top: 45px;
+      right: 0;
+      background-color: #2a2a2a;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      min-width: 240px;
+      box-shadow: 0 6px 16px rgba(0, 255, 136, 0.25);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-15px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    #menu-toggle:checked ~ .menu-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .menu-link {
+      display: block;
+      padding: 0.9rem 1.2rem;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.35rem;
+      transition: background 0.2s;
+    }
+    .menu-link:hover {
+      background-color: rgba(0, 255, 136, 0.18);
+      border-radius: 0.6rem;
+    }
+    .menu-link .date {
+      font-size: 1rem;
+      color: #aaa;
+      display: block;
+      margin-top: 0.15rem;
+    }
+
+    hr {
+      margin: 3rem 0;
+      border: 0;
+      border-top: 1px solid #444;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 1.8rem;
+      color: #00ff88;
+    }
+    .about {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Skills Section */
+    .skills-area {
+      margin-bottom: 2.8rem;
+      padding: 1.5rem;
+      background-color: #222;
+      border-radius: 1.2rem;
+      border-left: 6px solid #00ff88;
+      transition: transform 0.2s;
+    }
+    .skills-area:hover {
+      transform: translateY(-4px);
+    }
+    .skills-title {
+      font-size: 1.9rem;
+      margin-bottom: 0.6rem;
+      color: #00ff88;
+    }
+    .skills-desc {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .skills-tools {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+    .skills-tools strong {
+      color: #00ff88;
+    }
+
+    /* Portfolio */
+    .portfolio-item {
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background-color: #2a2a2a;
+      border-radius: 1.2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 255, 136, 0.25);
+    }
+    .project-image {
+      width: 100%;
+      height: auto;
+      border-radius: 0.8rem;
+      margin-bottom: 1.2rem;
+      background: #111;
+    }
+    .portfolio-link {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom 0.2s;
+    }
+    .portfolio-link:hover {
+      border-bottom: 1px solid #00ff88;
+    }
+    .project-description {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+      color: #ddd;
+    }
+    .date {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin: 0.6rem 0;
+    }
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+    .skill-tag {
+      background-color: #00ff88;
+      color: #1a1a1a;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.6rem; }
+      .subtitle { font-size: 1.4rem; }
+      .section-title { font-size: 1.9rem; }
+      .skills-title { font-size: 1.7rem; }
+      .portfolio-link { font-size: 1.4rem; }
+    }
   </style>
 </head>
 <body>
+
 <div class="container">
-  <!-- Name + Contact Icons -->
-  <h1>Daniel Nwidebari</h1>
-  <div class="contact-icons">
-    <a href="https://x.com/Daniel_Onchain" target="_blank" title="X">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-    </a>
-    <a href="https://www.linkedin.com/in/daniel-nwid/" target="_blank" title="LinkedIn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-      </svg>
-    </a>
-    <a href="mailto:nwid.daniel@gmail.com" title="Email">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-      </svg>
-    </a>
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>Daniel Nwidebari</h1>
+      <p class="subtitle">Data Analytics & Automation</p>
+      <div class="contact-icons">
+        <a href="https://x.com/Daniel_Onchain" target="_blank" title="X">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/daniel-nwid/" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="mailto:nwid.daniel@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-container">
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="menu-dropdown">
+        <a href="https://github.com/DanielNwid" target="_blank" class="menu-link">
+          GitHub
+          <span class="date">Projects & Code</span>
+        </a>
+        <a href="https://public.tableau.com/app/profile/daniel.nwidebari/vizzes" target="_blank" class="menu-link">
+          Tableau Dashboards
+          <span class="date">Data Visualizations</span>
+        </a>
+        <a href="https://dune.com/danielonchain" target="_blank" class="menu-link">
+          Dune Analytics Dashboards
+          <span class="date">Onchain Analytics</span>
+        </a>
+        <a href="https://onchainwithdaniel.substack.com/" target="_blank" class="menu-link">
+          Substack Newsletter
+          <span class="date">Web3 Analysis & Stories</span>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- About -->
   <div class="section-title">About</div>
   <div class="about">
-    Data Analyst passionate about decoding blockchain data to uncover growth insights. Skilled in SQL, Python, and data visualization (Dune Analytics, Tableau). I analyze Onchain/Offchain data to understand user behavior, and product performance in Other to drive growth metrics.  Sharing insights via my newsletter, Onchain With Daniel.
+    Data Analyst passionate about turning complex data into actionable growth insights. Skilled in SQL, Python, and data visualization tools like Tableau and Dune Analytics. I analyze user behavior and product performance across diverse datasets, including blockchain and transactional systems, to drive key metrics. Sharing insights via my newsletter, Onchain With Daniel. Open to opportunities in fintech, SaaS, consumer analytics, and emerging technologies.
   </div>
 
-  <!-- Links -->
-  <hr/>
-  <div class="section-title">Links</div>
-  <div class="portfolio-item">
-    <a class="portfolio-link" href="https://github.com/DanielNwid" target="_blank">
-      GitHub
-    </a>
-    <div class="date">Projects & Code</div>
+  <!-- Skills -->
+  <hr />
+  <div class="section-title">Skills & Focus Areas</div>
+
+  <div class="skills-area">
+    <div class="skills-title">📊 Data Analysis</div>
+    <div class="skills-desc">
+      I uncover powerful insights from diverse datasets through deep exploration, pattern recognition, and storytelling that drives real decisions (with experience in transactional systems like blockchain and traditional sources).
+    </div>
+    <div class="skills-tools"><strong>Tools:</strong> SQL, Python,Excel, Dune Analytics, Pandas</div>
   </div>
-  <div class="portfolio-item">
-    <a class="portfolio-link" href="https://public.tableau.com/app/profile/daniel.nwidebari/vizzes" target="_blank">
-      Tableau Dashboards
-    </a>
-    <div class="date">Data Visualizations</div>
+
+  <div class="skills-area">
+    <div class="skills-title">📈 Data Visualization</div>
+    <div class="skills-desc">
+      I build clear, impactful visualizations and dashboards that turn complex metrics into easy-to-understand stories for teams and stakeholders (applicable to high-volume data like financial or user activity).
+    </div>
+    <div class="skills-tools"><strong>Tools:</strong> Tableau, Power BI, Matplotlib/Seaborn</div>
   </div>
-  <div class="portfolio-item">
-    <a class="portfolio-link" href="https://dune.com/danielonchain" target="_blank">
-      Dune Analytics Dashboards
-    </a>
-    <div class="date">Onchain Analytics</div>
+
+  <div class="skills-area">
+    <div class="skills-title">🔍 Data Manipulation</div>
+    <div class="skills-desc">
+      I clean, transform, and wrangle messy data from multiple sources to prepare it for reliable analysis and modeling (handling formats like APIs, logs, and structured databases).
+    </div>
+    <div class="skills-tools"><strong>Tools:</strong> Python (Pandas, NumPy), SQL, Excel, API handling</div>
   </div>
-  <div class="portfolio-item">
-    <a class="portfolio-link" href="https://flipsidecrypto.xyz/daniel_onchain/dashboards" target="_blank">
-      Flipside Crypto Dashboards
-    </a>
-    <div class="date">Blockchain Insights</div>
-  </div>
-  <div class="portfolio-item">
-    <a class="portfolio-link" href="https://onchainwithdaniel.substack.com/" target="_blank">
-      Substack Newsletter
-    </a>
-    <div class="date">Web3 Analysis & Stories</div>
+
+  <div class="skills-area">
+    <div class="skills-title">🤖 Automation & Workflows</div>
+    <div class="skills-desc">
+      I create automated pipelines and workflows to monitor activity, generate reports, and trigger alerts — streamlining insights delivery (building my first full workflow now!).
+    </div>
+    <div class="skills-tools"><strong>Tools:</strong> Python scripting, N8N, Scheduled queries (Dune/Flipside), Airflow basics, Retool (exploring)</div>
   </div>
 
   <!-- Portfolio -->
   <hr />
   <div class="section-title">Portfolio</div>
+
   <div class="portfolio-item">
+    <img class="project-image" src="portimg/solblazzzeee.webp" alt="Unmasking Solana Validators">
     <a class="portfolio-link" href="https://open.substack.com/pub/onchainwithdaniel/p/unmasking-solana-validators-a-deep?r=ywl0n&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false" target="_blank">
-      Unmasking Solana Validators: A Deep Dive into Malicious Behavior with SolBlaze.
+      Unmasking Solana Validators: A Deep Dive into Malicious Behavior with SolBlaze
     </a>
+    <div class="project-description">
+      In-depth investigation into validator behavior on Solana, identifying patterns of malicious activity using SolBlaze data and advanced querying techniques. Skills demonstrated: Large-scale data querying, anomaly detection – applicable to any high-volume transactional system.
+    </div>
     <div class="date">May 2025</div>
+    <div class="skills-tags">
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Dune Analytics</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Anomaly Detection</span>
+    </div>
   </div>
+
   <div class="portfolio-item">
+    <img class="project-image" src="portimg/webbscrapn.jpg" alt="Web Scraping  VC Companies">
     <a class="portfolio-link" href="https://github.com/DanielNwid/Web-scraping-Web3-VC-Companies-" target="_blank">
-      Web Scraping Web3 VC Companies
+      Web Scraping VC Companies
     </a>
+    <div class="project-description">
+      Automated collection and structuring of venture capital firm data from public sources for market intelligence and trend analysis. Skills demonstrated: Data extraction and cleaning – transferable to any web-based research or competitive analysis.
+    </div>
     <div class="date">2024</div>
+    <div class="skills-tags">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">BeautifulSoup</span>
+      <span class="skill-tag">Web Scraping</span>
+      <span class="skill-tag">Pandas</span>
+    </div>
   </div>
+
   <div class="portfolio-item">
+    <img class="project-image" src="portimg/northwnd.png" alt="Sales Performance Northwind Traders">
     <a class="portfolio-link" href="https://github.com/DanielNwid/Sales-Performance--and-Customer-Segmentation-Analysis-Northwind-Traders-Python-Power-BI-" target="_blank">
       Sales Performance & Customer Segmentation Analysis: Northwind Traders
     </a>
+    <div class="project-description">
+      Comprehensive analysis of sales data including customer segmentation, product performance, and trend visualization to support business strategy. Skills demonstrated: Cohort analysis and segmentation – useful for e-commerce, SaaS, or any customer-facing business.
+    </div>
     <div class="date">May 2025</div>
+    <div class="skills-tags">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Power BI</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Customer Segmentation</span>
+    </div>
   </div>
+
   <div class="portfolio-item">
+    <img class="project-image" src="portimg/sentimentanlys.jpg" alt="Solana Sentiment Analysis">
     <a class="portfolio-link" href="https://github.com/DanielNwid/Solana-Sentiment-Analysis" target="_blank">
       Solana Sentiment Analysis
     </a>
+    <div class="project-description">
+      Sentiment analysis of social media and forum discussions around the Solana ecosystem to gauge community mood and predict market movements. Skills demonstrated: NLP processing and visualization – applicable to brand monitoring, customer feedback, or market research.
+    </div>
     <div class="date">April 2025</div>
+    <div class="skills-tags">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">NLP</span>
+      <span class="skill-tag">Sentiment Analysis</span>
+      <span class="skill-tag">Tableau</span>
+    </div>
   </div>
+
   <div class="portfolio-item">
+    <img class="project-image" src="portimg/electricityprce.jpg" alt="Electricity Price Forecasting">
     <a class="portfolio-link" href="https://github.com/DanielNwid/Electricity-price-forecasting-for-commercial-dApp" target="_blank">
       Electricity Price Forecasting
     </a>
+    <div class="project-description">
+      Time-series forecasting model for electricity prices to support commercial decentralized applications and energy market decisions. Skills demonstrated: Predictive modeling and time-series analysis – transferable to supply chain, finance, or any volatile market forecasting.
+    </div>
     <div class="date">March 2025</div>
+    <div class="skills-tags">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Time Series</span>
+      <span class="skill-tag">Machine Learning</span>
+      <span class="skill-tag">Forecasting</span>
+    </div>
   </div>
+
 </div>
+
 </body>
 </html>
