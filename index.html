@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Nwidebari | Data Analyst</title>
+<meta name="description" content="Data analyst building dashboards, reports, ETL pipelines, automations and forecasting models with SQL, Python, Power BI, Tableau, n8n and BigQuery.">
+<style>
+  :root {
+    --bg: #0c1118;
+    --surface: #111a24;
+    --surface-2: #0d151e;
+    --border: #1f2e3d;
+    --text: #e6edf3;
+    --muted: #9fb0c1;
+    --accent: #3fd0b4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px; }
+  .label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.2;
+    font-weight: 650;
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+  }
+  h2 { font-size: 22px; font-weight: 600; margin: 0 0 14px; }
+  h3 { font-size: 18px; font-weight: 600; margin: 0 0 8px; color: var(--text); }
+  p { color: var(--muted); margin: 0 0 16px; font-size: 16px; }
+  strong { color: var(--text); font-weight: 600; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 48px 0 40px; }
+
+  /* Social / resume icon row */
+  .socials { display: flex; gap: 12px; flex-wrap: wrap; margin: 0 0 30px; }
+  .social {
+    width: 46px; height: 46px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .social:hover { border-color: var(--accent); color: var(--accent); }
+  .social svg { width: 20px; height: 20px; fill: currentColor; }
+  .social svg.stroke { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Projects */
+  .project {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 18px;
+    margin-bottom: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s;
+  }
+  .project:hover { border-color: var(--accent); }
+  .project-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .project h3 { margin: 0 0 8px; }
+  .arrow { color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .project p { font-size: 15px; margin: 0 0 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 5px 11px 5px 8px; background: var(--surface-2);
+  }
+  .chip img { width: 14px; height: 14px; display: block; }
+
+  /* Tableau carousel */
+  .carousel { position: relative; user-select: none; outline: none; }
+  .viewport { overflow: hidden; border-radius: 12px; touch-action: pan-y; cursor: grab; }
+  .viewport:active { cursor: grabbing; }
+  .track { display: flex; transition: transform 0.5s cubic-bezier(.22,.61,.36,1); }
+  .slide { flex: 0 0 100%; padding: 0 2px; }
+  .slide a.shot { display: block; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; }
+  .slide img { width: 100%; height: auto; display: block; pointer-events: none; }
+  .slide-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 14px; }
+  .slide-meta h3 { margin: 0; font-size: 16px; }
+  .slide-meta a { font-size: 14px; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  .controls { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; }
+  .nav {
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); font-size: 18px; cursor: pointer;
+  }
+  .nav:hover { border-color: var(--accent); color: var(--accent); }
+  .dots { display: flex; gap: 8px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: var(--border); cursor: pointer; }
+  .dot.active { background: var(--accent); }
+  .hint { font-size: 13px; color: var(--muted); opacity: 0.8; margin: 10px 0 0; text-align: center; }
+
+  /* Experience */
+  .role { border-left: 2px solid var(--border); padding: 0 0 26px 18px; margin-left: 4px; }
+  .role:last-child { padding-bottom: 0; }
+  .role-meta { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+  .role ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .role li { margin-bottom: 6px; }
+
+  footer { margin-top: 56px; font-size: 13px; color: var(--muted); }
+  footer a { text-decoration: none; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- Header -->
+  <p class="label">Daniel Nwidebari · Data Analyst</p>
+  <h1>Dashboards, pipelines and automations that people actually use.</h1>
+
+  <div class="socials">
+    <a class="social" href="https://x.com/dannwide?s=11" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a class="social" href="https://www.linkedin.com/in/daniel-nwid" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a class="social" href="mailto:Dannynwid@gmail.com" aria-label="Email" title="Email">
+      <svg class="stroke" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+    <a class="social" href="Daniel_Nwidebari_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume" title="Resume (PDF)">
+      <svg class="stroke" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>
+    </a>
+  </div>
+
+  <!-- About -->
+  <h2>About</h2>
+  <p>I'm a data analyst who works across the whole data lifecycle: getting the data, shaping it, modelling it, building the pipeline that keeps it fresh, and presenting it so people can act on it.</p>
+  <p><strong>Visualisation and reporting.</strong> I build dashboards designed to answer a specific question quickly. My Tableau portfolio covers sales KPIs, EU and US sales, Airbnb pricing and election history, with deliberate choices about chart type, labelling and honest scales.</p>
+  <p><strong>Storytelling.</strong> A number only helps when someone knows what it means. I write the story around the data: what changed, why it matters, and what to do next. I also pay attention to the details that decide whether a report gets read, such as which alerts fire and when.</p>
+  <p><strong>Technical depth.</strong> I build ETL pipelines and workflow automations in n8n, load and model data in BigQuery, and write SQL and Python for cleaning, analysis and forecasting. I have built a nightly warehouse pipeline with reconciliation checks, a daily KPI email with statistically tested alerts, and a machine learning model that forecasts German electricity prices an hour ahead.</p>
+  <p><strong>AI and ML systems.</strong> I work with sentiment analysis, forecasting and API-driven data collection, and I'm extending that into LLM-powered analytics.</p>
+
+  <hr>
+
+  <!-- Projects -->
+  <p class="label">Projects</p>
+
+  <a class="project" href="https://github.com/DanielNwid/n8n-daily-sales-kpi-email" target="_blank" rel="noopener">
+    <div class="project-head"><h3>Daily Sales KPI Email Automation</h3><span class="arrow">↗</span></div>
+    <p>Every morning at 08:00, an n8n workflow queries Postgres, works out revenue, orders, margin and refund rates against the prior day, last week and the 7-day average, and emails the report with no analyst in the loop. I backtested the alert rule on a year of data before shipping it: a fixed percentage threshold fired on one day in five, so I switched to a z-score against the 28-day mean, which fires about four times a year.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="" onerror="this.style.display='none'">n8n</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="" onerror="this.style.display='none'">Postgres</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="" onerror="this.style.display='none'">Gmail</span>
+      <span class="chip">SQL</span>
+    </div>
+  </a>
+
+  <a class="project" href="https://github.com/DanielNwid/n8n-sales-warehouse-bigquery" target="_blank" rel="noopener">
+    <div class="project-head"><h3>Sales Warehouse: Nightly Multi-Source Load to BigQuery</h3><span class="arrow">↗</span></div>
+    <p>An n8n pipeline that lands orders, finance targets and the public-holiday calendar in one BigQuery warehouse every night, then builds models and eight reconciliation checks against the source. A run that fails a check still logs itself and then fails on purpose. Going incremental cut a normal night from 163 seconds to 53. The Looker Studio report shows FY26 targets behind pace, with June at 87% attainment.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="" onerror="this.style.display='none'">n8n</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/googlebigquery/669DF6" alt="" onerror="this.style.display='none'">BigQuery</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="" onerror="this.style.display='none'">Postgres</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="" onerror="this.style.display='none'">Google Sheets</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/looker/4285F4" alt="" onerror="this.style.display='none'">Looker Studio</span>
+      <span class="chip">SQL</span>
+    </div>
+  </a>
+
+  <a class="project" href="https://github.com/DanielNwid/Electricity-price-forecasting-for-commercial-dApp" target="_blank" rel="noopener">
+    <div class="project-head"><h3>Electricity Price Forecasting for Germany</h3><span class="arrow">↗</span></div>
+    <p>A machine learning model that predicts German electricity prices one hour ahead, using 54 features across 19,056 hours: demand, wind and solar output, and cross-border power flows. It catches the direction of price moves most of the time and about half of the big spikes. The strongest signal is the Germany-Luxembourg price, followed by Czech and Dutch neighbours.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/python/3776AB" alt="" onerror="this.style.display='none'">Python</span>
+      <span class="chip">Machine learning</span>
+      <span class="chip">Forecasting</span>
+    </div>
+  </a>
+
+  <a class="project" href="https://github.com/DanielNwid/Sales-Performance--and-Customer-Segmentation-Analysis-Northwind-Traders-Python-Power-BI-" target="_blank" rel="noopener">
+    <div class="project-head"><h3>Northwind Sales Performance and Customer Segmentation</h3><span class="arrow">↗</span></div>
+    <p>An analysis of Northwind Traders' orders, customers and products, covering data cleaning, feature engineering, customer segmentation and shipping efficiency, presented in an interactive Power BI dashboard. The High segment drives about 76% of revenue, and order volume peaks at the end of 2014 and early 2015.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/python/3776AB" alt="" onerror="this.style.display='none'">Python</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/powerbi/F2C811" alt="" onerror="this.style.display='none'">Power BI</span>
+      <span class="chip">Pandas</span>
+      <span class="chip">Jupyter</span>
+    </div>
+  </a>
+
+  <a class="project" href="https://github.com/DanielNwid/Solana-Sentiment-Analysis" target="_blank" rel="noopener">
+    <div class="project-head"><h3>Solana Sentiment Analysis for Fraud Detection</h3><span class="arrow">↗</span></div>
+    <p>Built for the Messari Crime Fighting AI Toolkit Hackathon. The project scores X sentiment and post volume for Solana using Messari's Signal API, then flags days where mood shifts unusually fast, which can signal a pump-and-dump. Across eight days in April 2025 it flagged six as suspicious.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/python/3776AB" alt="" onerror="this.style.display='none'">Python</span>
+      <span class="chip"><img src="https://cdn.simpleicons.org/solana/9945FF" alt="" onerror="this.style.display='none'">Solana</span>
+      <span class="chip">REST API</span>
+      <span class="chip">Sentiment analysis</span>
+    </div>
+  </a>
+
+  <a class="project" href="https://github.com/DanielNwid/API-Data-Extraction-and-Export" target="_blank" rel="noopener">
+    <div class="project-head"><h3>API Data Extraction and Export</h3><span class="arrow">↗</span></div>
+    <p>A Python tool that pulls data from REST APIs, cleans the responses and exports them to files ready for analysis.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/python/3776AB" alt="" onerror="this.style.display='none'">Python</span>
+      <span class="chip">REST API</span>
+      <span class="chip">Excel</span>
+    </div>
+  </a>
+
+  <a class="project" href="https://github.com/DanielNwid/Web-scraping-Web3-VC-Companies-" target="_blank" rel="noopener">
+    <div class="project-head"><h3>Web Scraping Web3 VC Companies</h3><span class="arrow">↗</span></div>
+    <p>A scraper that collects data on Web3 venture capital firms and their portfolio companies into a structured dataset.</p>
+    <div class="chips">
+      <span class="chip"><img src="https://cdn.simpleicons.org/python/3776AB" alt="" onerror="this.style.display='none'">Python</span>
+      <span class="chip">Web scraping</span>
+      <span class="chip">Web3</span>
+    </div>
+  </a>
+
+  <hr>
+
+  <!-- Tableau showcase -->
+  <p class="label">Tableau Dashboards</p>
+  <div class="carousel" id="carousel" tabindex="0">
+    <div class="viewport">
+      <div class="track">
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/AdidasSalesdashboardNXTLevelTableauaccelerator/Dashboard12" target="_blank" rel="noopener">
+            <img src="images/tableau-01-adidas.jpg" alt="Adidas USA Sales Dashboard">
+          </a>
+          <div class="slide-meta"><h3>Adidas USA Sales Dashboard</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/AdidasSalesdashboardNXTLevelTableauaccelerator/Dashboard12" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/EUSalesDashboardNXTLevelTableau30dAccelerator/Dashboard1" target="_blank" rel="noopener">
+            <img src="images/tableau-02-eu-sales.jpg" alt="EU Sales Dashboard">
+          </a>
+          <div class="slide-meta"><h3>EU Sales Dashboard</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/EUSalesDashboardNXTLevelTableau30dAccelerator/Dashboard1" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/VisualingCategoricalData/Dashboard1" target="_blank" rel="noopener">
+            <img src="images/tableau-03-categorical.jpg" alt="18 ways to visualise categorical data with bar charts">
+          </a>
+          <div class="slide-meta"><h3>18 Ways to Visualise Categorical Data</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/VisualingCategoricalData/Dashboard1" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/waystovisualizeTimeseriesdata/Dashboard1" target="_blank" rel="noopener">
+            <img src="images/tableau-04-time-series.jpg" alt="Ways to visualise time series data">
+          </a>
+          <div class="slide-meta"><h3>Ways to Visualise Time Series Data</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/waystovisualizeTimeseriesdata/Dashboard1" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/SalesKPIDashboard_17899139390900/Dashboard2" target="_blank" rel="noopener">
+            <img src="images/tableau-05-sales-kpi.jpg" alt="Sales Performance KPI Dashboard">
+          </a>
+          <div class="slide-meta"><h3>Sales Performance KPI Dashboard</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/SalesKPIDashboard_17899139390900/Dashboard2" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/USPresidentialElectionMakeoverMonday2024-Wk33/Dashboard1" target="_blank" rel="noopener">
+            <img src="images/tableau-06-us-elections.jpg" alt="US Presidential Elections 1976 to 2020">
+          </a>
+          <div class="slide-meta"><h3>US Presidential Elections, 1976–2020</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/USPresidentialElectionMakeoverMonday2024-Wk33/Dashboard1" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="slide">
+          <a class="shot" href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/Airbnb_17153346599950/AirbnbDashboard" target="_blank" rel="noopener">
+            <img src="images/tableau-07-airbnb.jpg" alt="Airbnb Business Planning dashboard">
+          </a>
+          <div class="slide-meta"><h3>Airbnb Business Planning</h3><a href="https://public.tableau.com/app/profile/daniel.nwidebari/viz/Airbnb_17153346599950/AirbnbDashboard" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="controls">
+      <button class="nav" id="prev" aria-label="Previous dashboard">‹</button>
+      <div class="dots" id="dots"></div>
+      <button class="nav" id="next" aria-label="Next dashboard">›</button>
+    </div>
+    <p class="hint">Swipe or use the arrows to browse. Tap a dashboard to open it on Tableau Public.</p>
+  </div>
+
+  <hr>
+
+  <!-- Experience -->
+  <p class="label">Experience</p>
+
+  <div class="role">
+    <h3>Data Access and Records Coordinator (Contract)</h3>
+    <p class="role-meta">TotalEnergies, UBETA project · Apr 2026 – Aug 2026 · Port Harcourt, Nigeria</p>
+    <ul>
+      <li>Set up and managed the access control process for site staff, covering card issuance and access records.</li>
+      <li>Built and maintained a database of 1,000+ site staff records, used to track access and issue cards.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <h3>Volunteer Data Analyst</h3>
+    <p class="role-meta">Remote · 2025 – Present</p>
+    <ul>
+      <li>Contributed to the "Advocating for Every Pet with Data" project with No Kill Colorado: cleaned and validated records in Excel, and used Python, pandas and geopy to geocode addresses from the PACFA list.</li>
+      <li>Volunteer on ad hoc data projects for non-profits and social impact in the community Slack channel.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <h3>Messari Bounty Contributor</h3>
+    <p class="role-meta">Remote · Apr 2025</p>
+    <ul>
+      <li>Built a Python-based Crime Fighting AI Toolkit for Solana that analyses API data to flag suspicious tokens using a normalised suspicion score.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <h3>RevGenius Member</h3>
+    <p class="role-meta">Remote · 2024 – Present</p>
+    <ul>
+      <li>Active in a community focused on revenue growth, sharing growth strategy insights with professionals.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Code and READMEs for each project are on <a href="https://github.com/DanielNwid" target="_blank" rel="noopener">GitHub</a>. Resume available above.</p>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var carousel = document.getElementById('carousel');
+  var track = carousel.querySelector('.track');
+  var slides = track.querySelectorAll('.slide');
+  var dotsWrap = document.getElementById('dots');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var viewport = carousel.querySelector('.viewport');
+  var index = 0;
+  var total = slides.length;
+  var startX = 0, dx = 0, dragging = false, moved = false;
+
+  slides.forEach(function (_, i) {
+    var b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('aria-label', 'Go to dashboard ' + (i + 1));
+    b.addEventListener('click', function () { go(i); });
+    dotsWrap.appendChild(b);
+  });
+
+  function render() {
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dotsWrap.querySelectorAll('.dot').forEach(function (d, i) {
+      d.classList.toggle('active', i === index);
+    });
+  }
+
+  function go(i) {
+    index = (i + total) % total;
+    render();
+  }
+
+  prevBtn.addEventListener('click', function () { go(index - 1); });
+  nextBtn.addEventListener('click', function () { go(index + 1); });
+
+  // Swipe / drag with pointer events (touch, mouse and pen)
+  viewport.addEventListener('pointerdown', function (e) {
+    dragging = true; moved = false;
+    startX = e.clientX; dx = 0;
+    track.style.transition = 'none';
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    dx = e.clientX - startX;
+    if (Math.abs(dx) > 5) moved = true;
+    track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + dx + 'px))';
+  });
+  window.addEventListener('pointerup', function () {
+    if (!dragging) return;
+    dragging = false;
+    track.style.transition = '';
+    var threshold = 50;
+    if (dx < -threshold) go(index + 1);
+    else if (dx > threshold) go(index - 1);
+    else render();
+  });
+
+  // A drag should not follow the dashboard link underneath
+  track.addEventListener('click', function (e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+  }, true);
+
+  // Arrow keys when the carousel has focus
+  carousel.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') go(index + 1);
+    if (e.key === 'ArrowLeft') go(index - 1);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
